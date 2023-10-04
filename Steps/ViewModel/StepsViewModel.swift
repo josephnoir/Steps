@@ -7,6 +7,8 @@
 
 import SwiftUI
 import HealthKit
+import PhotosUI
+import CoreTransferable
 
 class StepsViewModel: ObservableObject {
     var healthStore: HKHealthStore?
@@ -102,6 +104,68 @@ class StepsViewModel: ObservableObject {
 
         healthStore.requestAuthorization(toShare: [], read: [stepType]) { success, error in
             completion(success)
+        }
+    }
+    
+    // MARK: - Background Image
+    
+    @Published var showBackgroundImageAlert = false
+    
+    enum BackgroundImageState {
+        case empty
+        case loading(Progress)
+        case success(Image)
+        case failure(Error)
+    }
+    
+    @Published private(set) var backgroundImageState: BackgroundImageState = .empty
+    
+    @Published var backgroundImageSelection: PhotosPickerItem? = nil {
+        didSet {
+            if let backgroundImageSelection {
+                let progress = loadTransferable(from: backgroundImageSelection)
+                backgroundImageState = .loading(progress)
+            } else {
+                backgroundImageState = .empty
+            }
+        }
+    }
+    
+    enum TransferError: Error {
+        case importFailed
+    }
+    
+    struct BackgroundImage: Transferable {
+        let image: Image
+        
+        static var transferRepresentation: some TransferRepresentation {
+            DataRepresentation(importedContentType: .image) { data in
+                guard let uiImage = UIImage(data: data) else {
+                    throw TransferError.importFailed
+                }
+                let image = Image(uiImage: uiImage)
+                return BackgroundImage(image: image)
+            }
+        }
+    }
+    
+    private func loadTransferable(from backgroundImageSelection: PhotosPickerItem) -> Progress {
+        return backgroundImageSelection.loadTransferable(type: BackgroundImage.self) { result in
+            DispatchQueue.main.async {
+                guard backgroundImageSelection == self.backgroundImageSelection else {
+                    print("Failed to get the selected item.")
+                    return
+                }
+                switch result {
+                case .success(let backgroundImage?):
+                    self.backgroundImageState = .success(backgroundImage.image)
+                case .success(nil):
+                    self.backgroundImageState = .empty
+                case .failure(let error):
+                    self.showBackgroundImageAlert = true
+                    self.backgroundImageState = .failure(error)
+                }
+            }
         }
     }
 }

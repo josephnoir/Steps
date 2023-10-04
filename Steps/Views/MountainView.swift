@@ -13,12 +13,12 @@ struct MountainView: View {
     var body: some View {
         GeometryReader { geo in
             ZStack {
-                Image("background")
-                    .resizable()
-                    .frame(width: geo.size.width, height: geo.size.height)
+                BackgroundView(backgroundImageState: viewModel.backgroundImageState)
+//                    .frame(width: geo.size.width, height: geo.size.height)
                     .aspectRatio(contentMode: .fill)
                     .edgesIgnoringSafeArea(.all)
                     .opacity(0.5)
+
 
                 VStack(spacing: 200) {
                     CircleView(opacity: viewModel.checkPointFourReached ? 1 : 0.2)
