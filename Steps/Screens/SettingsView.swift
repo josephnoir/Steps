@@ -27,7 +27,7 @@ struct SettingsView: View {
                     }
                     
                     Section {
-                        if stepsViewModel.backgroundImageSelection != nil {
+                        if stepsViewModel.backgroundImage != nil {
                             Button("Reset background image") {
                                 stepsViewModel.backgroundImageSelection = nil
                             }

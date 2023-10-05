@@ -8,21 +8,13 @@
 import SwiftUI
 
 struct BackgroundView: View {
-    let backgroundImageState: StepsViewModel.BackgroundImageState
-    
+    @ObservedObject var stepsModel: StepsViewModel
+
     var body: some View {
-        switch backgroundImageState {
-        case .success(let image):
-            image
+        if let backgroundImage = stepsModel.backgroundImage {
+            Image(uiImage: backgroundImage)
                 .resizable()
-        case .loading:
-            ProgressView()
-        case .empty:
-            Image("background")
-                .resizable()
-        case .failure:
-            // The settings view will show an alert. We just set
-            // the default background as a fallback.
+        } else {
             Image("background")
                 .resizable()
         }

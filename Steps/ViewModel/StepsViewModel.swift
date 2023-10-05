@@ -28,6 +28,8 @@ class StepsViewModel: ObservableObject {
         if HKHealthStore.isHealthDataAvailable() {
             healthStore = HKHealthStore()
         }
+        
+        self.backgroundImage = loadImage(key: Constants.backgroundImageKey)
     }
 
     var currentSteps: Int {
@@ -114,11 +116,28 @@ class StepsViewModel: ObservableObject {
     enum BackgroundImageState {
         case empty
         case loading(Progress)
-        case success(Image)
+        case success(UIImage)
         case failure(Error)
     }
     
-    @Published private(set) var backgroundImageState: BackgroundImageState = .empty
+    @Published var backgroundImage: UIImage? = nil
+    
+    @Published private(set) var backgroundImageState: BackgroundImageState = .empty {
+        didSet {
+            switch backgroundImageState {
+            case .success(let image):
+                backgroundImage = image
+                saveImage(image: image, key: Constants.backgroundImageKey)
+            case .loading:
+                return
+            case .empty:
+                backgroundImage = nil
+                deleteImage(key: Constants.backgroundImageKey)
+            case .failure:
+                self.showBackgroundImageAlert = true
+            }
+        }
+    }
     
     @Published var backgroundImageSelection: PhotosPickerItem? = nil {
         didSet {
@@ -136,15 +155,14 @@ class StepsViewModel: ObservableObject {
     }
     
     struct BackgroundImage: Transferable {
-        let image: Image
+        let image: UIImage
         
         static var transferRepresentation: some TransferRepresentation {
             DataRepresentation(importedContentType: .image) { data in
                 guard let uiImage = UIImage(data: data) else {
                     throw TransferError.importFailed
                 }
-                let image = Image(uiImage: uiImage)
-                return BackgroundImage(image: image)
+                return BackgroundImage(image: uiImage)
             }
         }
     }
@@ -162,7 +180,6 @@ class StepsViewModel: ObservableObject {
                 case .success(nil):
                     self.backgroundImageState = .empty
                 case .failure(let error):
-                    self.showBackgroundImageAlert = true
                     self.backgroundImageState = .failure(error)
                 }
             }
