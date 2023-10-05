@@ -64,6 +64,13 @@
 		892079CB2ACF4EEB001E050B /* ContributorsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 892079CA2ACF4EEB001E050B /* ContributorsView.swift */; };
 		892079CD2ACF4F05001E050B /* ContributorsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 892079CC2ACF4F05001E050B /* ContributorsViewModel.swift */; };
 		892079CF2ACF4F21001E050B /* Contributor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 892079CE2ACF4F21001E050B /* Contributor.swift */; };
+		648F69B02ACF5163001F715E /* BackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 648F69AF2ACF5163001F715E /* BackgroundView.swift */; };
+		648F69B22ACF5178001F715E /* ImageStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 648F69B12ACF5178001F715E /* ImageStorage.swift */; };
+		648F69B32ACF5178001F715E /* ImageStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 648F69B12ACF5178001F715E /* ImageStorage.swift */; };
+		648F69B62ACF517E001F715E /* FileManager+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 648F69B42ACF517E001F715E /* FileManager+Ext.swift */; };
+		648F69B72ACF517E001F715E /* FileManager+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 648F69B42ACF517E001F715E /* FileManager+Ext.swift */; };
+		648F69B82ACF517E001F715E /* UIImage+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 648F69B52ACF517E001F715E /* UIImage+Ext.swift */; };
+		648F69B92ACF517E001F715E /* UIImage+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 648F69B52ACF517E001F715E /* UIImage+Ext.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -145,6 +152,10 @@
 		892079CA2ACF4EEB001E050B /* ContributorsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContributorsView.swift; sourceTree = "<group>"; };
 		892079CC2ACF4F05001E050B /* ContributorsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContributorsViewModel.swift; sourceTree = "<group>"; };
 		892079CE2ACF4F21001E050B /* Contributor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Contributor.swift; sourceTree = "<group>"; };
+		648F69AF2ACF5163001F715E /* BackgroundView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackgroundView.swift; sourceTree = "<group>"; };
+		648F69B12ACF5178001F715E /* ImageStorage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageStorage.swift; sourceTree = "<group>"; };
+		648F69B42ACF517E001F715E /* FileManager+Ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "FileManager+Ext.swift"; sourceTree = "<group>"; };
+		648F69B52ACF517E001F715E /* UIImage+Ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Ext.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -181,6 +192,8 @@
 			isa = PBXGroup;
 			children = (
 				18A1FB1A294AAB93009B87EF /* Date+Ext.swift */,
+				648F69B42ACF517E001F715E /* FileManager+Ext.swift */,
+				648F69B52ACF517E001F715E /* UIImage+Ext.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -279,6 +292,7 @@
 				1838FC22296A846200EAA116 /* TaskListRowView.swift */,
 				5E0BDF922ACDB01500F7038E /* NewWeekStepsView.swift */,
 				5E0BDF942ACDB03200F7038E /* MonthStepsView.swift */,
+				648F69AF2ACF5163001F715E /* BackgroundView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -310,6 +324,7 @@
 			children = (
 				1838FC24296A85D700EAA116 /* Extensions */,
 				18F1F9E42956362E00156D4C /* Constants.swift */,
+				648F69B12ACF5178001F715E /* ImageStorage.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -437,11 +452,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				648F69B02ACF5163001F715E /* BackgroundView.swift in Sources */,
 				184FD8B5294BE788000E4576 /* Step.swift in Sources */,
 				18C35A6F294417DE00A649FC /* CircleProgressBar.swift in Sources */,
 				185DB3F929494947003BCC48 /* AwardView.swift in Sources */,
 				18C81E16294A934B0058138F /* StepsViewModel.swift in Sources */,
+				648F69B22ACF5178001F715E /* ImageStorage.swift in Sources */,
 				185B74CF295CEA02000AD18A /* CurrentStepsCardView.swift in Sources */,
+				648F69B62ACF517E001F715E /* FileManager+Ext.swift in Sources */,
 				181AE8682953B83000BAD40D /* AwardLockedView.swift in Sources */,
 				189BDCF4294D3E1100E8237F /* AwardBadgeView.swift in Sources */,
 				18E37432294E91B100D6B253 /* EditStepsGoalView.swift in Sources */,
@@ -459,6 +477,7 @@
 				18F1F9E52956362E00156D4C /* Constants.swift in Sources */,
 				1838FC23296A846200EAA116 /* TaskListRowView.swift in Sources */,
 				18C81E14294A923B0058138F /* StepsDetailView.swift in Sources */,
+				648F69B82ACF517E001F715E /* UIImage+Ext.swift in Sources */,
 				18E37434294E925100D6B253 /* StepsGoalCardView.swift in Sources */,
 				189BDCEA294D163700E8237F /* FactView.swift in Sources */,
 				1876B8222956774600346975 /* MountainView.swift in Sources */,
@@ -481,11 +500,14 @@
 			files = (
 				800E1FFB2ACD1A7D000C5CE4 /* StepsGraphWidget.swift in Sources */,
 				185F75DC295E19EA00F48560 /* StepsViewModel.swift in Sources */,
+				648F69B32ACF5178001F715E /* ImageStorage.swift in Sources */,
 				185DB4082949514D003BCC48 /* StepsWidgetBundle.swift in Sources */,
 				185F75DE295E1A5100F48560 /* Step.swift in Sources */,
 				185DB40A2949514D003BCC48 /* StepsWidget.swift in Sources */,
 				185F75DD295E1A4200F48560 /* Date+Ext.swift in Sources */,
+				648F69B92ACF517E001F715E /* UIImage+Ext.swift in Sources */,
 				185F75DF295E1A5400F48560 /* Constants.swift in Sources */,
+				648F69B72ACF517E001F715E /* FileManager+Ext.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
